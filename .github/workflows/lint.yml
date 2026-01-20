@@ -1,4 +1,4 @@
-name: Validar Código
+name: Check MyLink Code
 
 on:
   push:
@@ -7,15 +7,18 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  html-validation:
+    name: Validate HTML5
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout do código
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Validar Sintaxe HTML
-        uses: anishathalye/proof-action@v1 # Exemplo de validador leve
-        
-      - name: Notificar Sucesso
-        run: echo "O código do MyLink passou nos testes de estrutura!"
+      - name: HTML5 Validator
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: ./
+          # Isso garante que ele valide apenas o seu index.html ou arquivos .html
+          file_extensions: html
+          # Ignora erros de scripts externos se necessário
+          ignore_re: 'https://cdn.tailwindcss.com'
