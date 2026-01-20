@@ -17,8 +17,8 @@ jobs:
       - name: HTML5 Validator
         uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
-          root: ./
-          # Isso garante que ele valide apenas o seu index.html ou arquivos .html
-          file_extensions: html
+          root: .
+          # Na versão v7+, usamos 'extra' para passar argumentos adicionais como extensões
+          extra: --match *.html
           # Ignora erros de scripts externos se necessário
           ignore_re: 'https://cdn.tailwindcss.com'
