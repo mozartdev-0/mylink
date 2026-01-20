@@ -1,0 +1,21 @@
+name: Validar Código
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Validar Sintaxe HTML
+        uses: anishathalye/proof-action@v1 # Exemplo de validador leve
+        
+      - name: Notificar Sucesso
+        run: echo "O código do MyLink passou nos testes de estrutura!"
